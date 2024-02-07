@@ -81,7 +81,7 @@ namespace Confluent.SchemaRegistry.Serdes
                 foreach (var it in schema.Properties)
                 {
                     string fullName = path + '.' + it.Key;
-                    using (ctx.EnterField(ctx, message, fullName, it.Key, GetType(it.Value), GetInlineTags(it.Value)))
+                    using (ctx.EnterField(message, fullName, it.Key, GetType(it.Value), GetInlineTags(it.Value)))
                     {
                         FieldAccessor fieldAccessor = new FieldAccessor(message.GetType(), it.Key);
                         object value = fieldAccessor.GetFieldValue(message);

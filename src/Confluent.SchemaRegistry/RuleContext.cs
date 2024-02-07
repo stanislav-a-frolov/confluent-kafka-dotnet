@@ -82,12 +82,12 @@ namespace Confluent.SchemaRegistry
             return fieldContexts.Count != 0 ? fieldContexts.Peek() : null;
         }
 
-        public FieldContext EnterField(RuleContext ctx, object containingMessage,
+        public FieldContext EnterField(object containingMessage,
             string fullName, string name, Type type, ISet<string> tags)
         {
             ISet<string> allTags = new HashSet<string>(tags);
-            allTags.UnionWith(ctx.getTags(fullName));
-            return new FieldContext(ctx, containingMessage, fullName, name, type, allTags);
+            allTags.UnionWith(getTags(fullName));
+            return new FieldContext(this, containingMessage, fullName, name, type, allTags);
         }
 
         public class FieldContext : IDisposable

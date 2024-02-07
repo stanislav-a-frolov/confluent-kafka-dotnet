@@ -73,7 +73,7 @@ namespace Confluent.SchemaRegistry.Serdes
                 foreach (FieldDescriptor fd in copy.Descriptor.Fields.InDeclarationOrder())
                 {
                     FieldDescriptorProto schemaFd = FindFieldByName(messageType, fd.Name);
-                    using (ctx.EnterField(ctx, copy, fd.FullName, fd.Name, GetType(fd), GetInlineTags(fd)))
+                    using (ctx.EnterField(copy, fd.FullName, fd.Name, GetType(fd), GetInlineTags(fd)))
                     {
                         object value = fd.Accessor.GetValue(copy);
                         DescriptorProto d = messageType;
