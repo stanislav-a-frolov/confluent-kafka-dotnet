@@ -128,6 +128,7 @@ namespace Confluent.SchemaRegistry.Serdes
                 ((FieldRuleExecutor)executor).FieldTransformer = (ctx, transform, message) =>
                 {
                     // TODO RULES pass imports
+                    // TODO cache
                     var fdSet = ProtobufUtils.Parse(ctx.Target.SchemaString, null);
                     return ProtobufUtils.Transform(ctx, fdSet, message, transform);
                 };
